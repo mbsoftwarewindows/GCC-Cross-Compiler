@@ -22,6 +22,8 @@
 # If you want to disable Graphite loop optimizations while building GCC,
 # DO NOT set GRAPHITE_LOOP_OPT as yes so that the ISL package will not
 # be downloaded.
+#
+# October 30, 2016: Modified--Replace wget with curl.
 GRAPHITE_LOOP_OPT=yes
 
 if [ ! -e gcc/BASE-VER ] ; then
@@ -35,17 +37,17 @@ GMP=gmp-4.3.2
 MPC=mpc-0.8.1
 CURL=curl
 
-#$CURL ftp://gcc.gnu.org/pub/gcc/infrastructure/$MPFR.tar.bz2 -o $MPFR.tar.bz2 || exit 1
-#tar xjf $MPFR.tar.bz2 || exit 1
-#ln -sf $MPFR mpfr || exit 1
+$CURL ftp://gcc.gnu.org/pub/gcc/infrastructure/$MPFR.tar.bz2 -o $MPFR.tar.bz2 || exit 1
+tar xjf $MPFR.tar.bz2 || exit 1
+ln -sf $MPFR mpfr || exit 1
 
-#$CURL ftp://gcc.gnu.org/pub/gcc/infrastructure/$GMP.tar.bz2 -o $GMP.tar.bz2 || exit 1
-#tar xjf $GMP.tar.bz2  || exit 1
-#ln -sf $GMP gmp || exit 1
+$CURL ftp://gcc.gnu.org/pub/gcc/infrastructure/$GMP.tar.bz2 -o $GMP.tar.bz2 || exit 1
+tar xjf $GMP.tar.bz2  || exit 1
+ln -sf $GMP gmp || exit 1
 
-#$CURL ftp://gcc.gnu.org/pub/gcc/infrastructure/$MPC.tar.gz -o $MPC.tar.gz || exit 1
-#tar xzf $MPC.tar.gz || exit 1
-#ln -sf $MPC mpc || exit 1
+$CURL ftp://gcc.gnu.org/pub/gcc/infrastructure/$MPC.tar.gz -o $MPC.tar.gz || exit 1
+tar xzf $MPC.tar.gz || exit 1
+ln -sf $MPC mpc || exit 1
 
 # Necessary to build GCC with the Graphite loop optimizations.
 if [ "$GRAPHITE_LOOP_OPT" = "yes" ] ; then
